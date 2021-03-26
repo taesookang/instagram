@@ -2,32 +2,62 @@ import React, { useState, useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import firebaseContext from "../context/firebase";
 import * as ROUTES from "../constants/Routes";
+import { doesUserNameExist } from "../services/firebase";
 
-export default function Login() {
+export default function Signup() {
   const history = useHistory();
   const { firebase } = useContext(firebaseContext);
 
+  const [userName, setUserName] = useState("");
+  const [fullName, setFullName] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
 
   const [error, setError] = useState("");
   const isInvalid = password === "" || emailAddress === "";
 
-  const handleLogin = async (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
 
-    try {
-      await firebase.auth().signInWithEmailAndPassword(emailAddress, password);
-      history.push(ROUTES.DASHBOARD);
-    } catch (err) {
-      setEmailAddress("");
-      setPassword("");
-      setError(err.message);
+    const userNameExists = await doesUserNameExist(userName);
+    if (!userNameExists) {
+      try {
+        const createdUserResult = await firebase
+          .auth()
+          .createUserWithEmailAndPassword(emailAddress, password);
+
+        await createdUserResult.user.updateProfile({
+          displayName: userName,
+        });
+
+        await firebase.firestore().collection("users").add({
+          userId: createdUserResult.user.uid,
+          username: userName.toLowerCase(),
+          fullName,
+          emailAddress: emailAddress,
+          following: [],
+          followers:[],
+          dateCreated: Date.now(),
+        });
+
+        history.push(ROUTES.DASHBOARD);
+      } catch (err) {
+        setFullName("");
+        setEmailAddress("");
+        setPassword("");
+        setError(err.message);
+      }
+    } else {
+      setUserName('');
+      setError('The username is already taken, please try another.');
     }
+
+    try {
+    } catch (err) {}
   };
 
   useEffect(() => {
-    document.title = "Login - instagram";
+    document.title = "Sign Up - instagram";
   }, []);
 
   return (
@@ -43,7 +73,23 @@ export default function Login() {
 
           {error && <p className="mb-4 text-xs text-red-primary">{error}</p>}
 
-          <form onSubmit={handleLogin} method="POST">
+          <form onSubmit={handleSignUp} method="POST">
+            <input
+              type="text"
+              aria-label="Enter your username"
+              placeholder="Username"
+              className="text-sm text-gray-base w-full mr-3 mb-3 py-5 px-4 h-2 border border-gray-primary rounded"
+              onChange={(e) => setUserName(e.target.value)}
+              value={userName}
+            />
+            <input
+              type="text"
+              aria-label="Enter your full name"
+              placeholder="Fullname"
+              className="text-sm text-gray-base w-full mr-3 mb-3 py-5 px-4 h-2 border border-gray-primary rounded"
+              onChange={(e) => setFullName(e.target.value)}
+              value={fullName}
+            />
             <input
               type="text"
               aria-label="Enter email address"
@@ -67,15 +113,15 @@ export default function Login() {
                 isInvalid && "opacity-50"
               }`}
             >
-              Log In
+              Sign Up
             </button>
           </form>
         </div>
         <div className="flex justify-center items-center flex-col w-full bg-white p-4 border border-gray-primary rounded">
           <p className="text-sm">
-            Don't have an account? {``}
-            <Link to={ROUTES.SIGNUP} className="font-bold text-blue-medium">
-              Sign Up
+            Have an account? {``}
+            <Link to={ROUTES.LOGIN} className="font-bold text-blue-medium">
+              Log In
             </Link>
           </p>
         </div>
