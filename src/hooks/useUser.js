@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import userContext from '../context/user'
 import { getUserByUserID } from '../services/firebase'
 

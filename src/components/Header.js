@@ -8,7 +8,6 @@ export default function Header() {
   const { firebase } = useContext(firebaseContext);
   const { user } = useContext(userContext);
 
-  console.log("user", user);
   return (
     <header className="bg-white h-16 border-b border-gray-primary mb-8">
       <div className="container mx-auto max-w-screen-lg h-full">
@@ -71,7 +70,7 @@ export default function Header() {
                   <Link to={`/p/${user.displayName}`}>
                     <img
                       className="rounded-full h-10 w-10 flex"
-                      src={`/images/avatars/taesoo.jpeg`}
+                      src={`/images/avatars/taesoo.jpg`}
                       alt={`${user.displayName} profile`}
                     />
                   </Link>
@@ -79,14 +78,22 @@ export default function Header() {
               </>
             ) : (
               <>
-              <Link to={ROUTES.LOGIN}>
-                  <button type="button"
-                  className="bg-blue-medium font-bold text-sm rounded text-white w-20 h-8">Log In</button>
-              </Link>
-              <Link to={ROUTES.SIGNUP}>
-                  <button type="button"
-                  className="text-blue-medium font-bold text-sm w-20 h-8">Sign Up</button>
-              </Link>
+                <Link to={ROUTES.LOGIN}>
+                  <button
+                    type="button"
+                    className="bg-blue-medium font-bold text-sm rounded text-white w-20 h-8"
+                  >
+                    Log In
+                  </button>
+                </Link>
+                <Link to={ROUTES.SIGNUP}>
+                  <button
+                    type="button"
+                    className="text-blue-medium font-bold text-sm w-20 h-8"
+                  >
+                    Sign Up
+                  </button>
+                </Link>
               </>
             )}
           </div>
