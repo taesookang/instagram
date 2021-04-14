@@ -21,8 +21,9 @@ module.exports = {
         primary: "#dbdbdb",
       },
       red: {
-        primary: "#ed4956",
+        primary: "#ed4956"
       },
+      yellow: "#FBBF24"
     },
   },
   variants: {

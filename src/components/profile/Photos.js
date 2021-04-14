@@ -10,9 +10,9 @@ export default function Photos({ photos }) {
           <Skeleton count={12} width={320} height={400} />
         ) : photos.length > 0 ? (
           photos.map((photo) => (
-            <div key={photo.docId} className="relative group">
+            <div key={photo.docId} className="relative flex group max-h-80 overflow-hidden items-center bg-gray-primary">
               <img src={photo.imageSrc} alt={photo.docId} />
-              <div className="absolute bottom-0 left-0 bg-gray-200 z-10 w-full justify-evenly items-center h-full bg-black-faded group-hover:flex hidden">
+              <div className="absolute bottom-0 left-0 bg-gray-200 z-1 w-full justify-evenly items-center h-full bg-black-faded group-hover:flex hidden">
                 <p className="flex items-center text-white font-bold">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

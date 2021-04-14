@@ -57,17 +57,21 @@ export default function Header({
   return (
     <div className="grid grid-cols-3 gap-4 justify-between mx-auto max-w-screen-lg">
       <div className="container flex justify-center">
-        {profileUsername && (
+        {profileUsername ? (
+          <div className={`${ isFollowingProfile && "p-1 bg-gradient-to-tr from-yellow to-red-primary rounded-full"}`}>
           <img
             src={`/images/avatars/${profileUsername}.jpg`}
             alt={`${profileUsername} profile`}
-            className="rounded-full h-40 w-40 flex"
+            className="rounded-full h-40 w-40 flex border-4 border-white"
           />
+          </div>
+        ):(
+          <Skeleton circle={true} width={150} height={150}/>
         )}
       </div>
-      <div className="flex items-center justify-center flex-col col-span-2">
+      <div className="flex items-center justify-center flex-col col-span-1">
         <div className="container flex items-center">
-          <div className="flex mr-4 w-32 items-center">
+          <div className="flex mr-4 items-center">
             <p className="text-2xl mr-1">{profileUsername}</p>
             {isFollowingProfile && (
               <div className="w-5 h-5 text-blue-medium">
@@ -115,7 +119,7 @@ export default function Header({
         </div>
         <div className="container flex mt-4">
           {!followers || !following ? (
-            <Skeleton count={1} width={677} height={24} />
+            <Skeleton count={1} width={320} height={48} />
           ) : (
             <>
               <p className="mr-10">
@@ -134,7 +138,7 @@ export default function Header({
         </div>
         <div className="container mt-4">
           <p className="font-medium">
-            {!fullName ? <Skeleton count={1} height={24} /> : fullName}
+            {!fullName ? <Skeleton count={1} width={100} height={24} /> : fullName}
           </p>
         </div>
       </div>

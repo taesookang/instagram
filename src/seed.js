@@ -1,70 +1,72 @@
 export function seedDatabase(firebase) {
-    const users = [
-      {
-        userId: 'ad6lsJG8XJf5VWVoiYvIlwsDzZl2',
-        username: 'Taesoo',
-        fullName: 'Taesoo Kang',
-        emailAddress: 'test@test.com',
-        following: ['2'],
-        followers: ['2', '3', '4'],
-        dateCreated: Date.now()
-      },
-      {
-        userId: '2',
-        username: 'raphael',
-        fullName: 'Raffaello Sanzio da Urbino',
-        emailAddress: 'raphael@sanzio.com',
-        following: [],
-        followers: ['ad6lsJG8XJf5VWVoiYvIlwsDzZl2'],
-        dateCreated: Date.now()
-      },
-      {
-        userId: '3',
-        username: 'dali',
-        fullName: 'Salvador Dalí',
-        emailAddress: 'salvador@dali.com',
-        following: [],
-        followers: ['ad6lsJG8XJf5VWVoiYvIlwsDzZl2'],
-        dateCreated: Date.now()
-      },
-      {
-        userId: '4',
-        username: 'orwell',
-        fullName: 'George Orwell',
-        emailAddress: 'george@orwell.com',
-        following: [],
-        followers: ['ad6lsJG8XJf5VWVoiYvIlwsDzZl2'],
-        dateCreated: Date.now()
-      }
-    ];
-  
-    for (let k = 0; k < users.length; k++) {
-      firebase.firestore().collection('users').add(users[k]);
-    }
-  
-    for (let i = 1; i <= 5; ++i) {
+  const users = [
+    {
+      userId: "2",
+      username: "james",
+      fullName: "James Lebron",
+      emailAddress: "james@lebron.com",
+      following: [],
+      followers: [],
+      dateCreated: Date.now(),
+    },
+    {
+      userId: "3",
+      username: "curry",
+      fullName: "Stephen Curry",
+      emailAddress: "stephan@curry.com",
+      following: [],
+      followers: [],
+      dateCreated: Date.now(),
+    },
+    {
+      userId: "4",
+      username: "davis",
+      fullName: "Anthony Davis",
+      emailAddress: "anthony@davis.com",
+      following: [],
+      followers: [],
+      dateCreated: Date.now(),
+    },
+    {
+      userId: "5",
+      username: "antetokounmpo",
+      fullName: "Giannis Antetokounmpo",
+      emailAddress: "giannis@antetokounmpo.com",
+      following: [],
+      followers: [],
+      dateCreated: Date.now(),
+    },
+  ];
+
+  for (let k = 0; k < users.length; k++) {
+    firebase.firestore().collection("users").add(users[k]);
+  }
+
+  for (let u = 0; u < users.length; u++) {
+    for (let i = 1; i <= 3; i++) {
       firebase
         .firestore()
-        .collection('photos')
+        .collection("photos")
         .add({
-          photoId: i,
-          userId: '2',
-          imageSrc: `/images/users/raphael/${i}.jpg`,
-          caption: 'Saint George and the Dragon',
+          photoId: `${users[u].username + i}`,
+          userId: `${users[u].userId}`,
+          imageSrc: `/images/users/${users[u].username}/${i}.jpg`,
+          caption: "NBA season",
           likes: [],
           comments: [
             {
-              displayName: 'dali',
-              comment: 'Love this place, looks like my animal farm!'
+              displayName: "james",
+              comment: "Love this one, brother",
             },
             {
-              displayName: 'orwell',
-              comment: 'Would you mind if I used this picture?'
-            }
+              displayName: "curry",
+              comment: "The best scene ever !!",
+            },
           ],
-          userLatitude: '40.7128°',
-          userLongitude: '74.0060°',
-          dateCreated: Date.now()
+          userLatitude: "40.7128°",
+          userLongitude: "74.0060°",
+          dateCreated: Date.now(),
         });
     }
   }
+}

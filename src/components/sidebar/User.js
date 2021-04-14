@@ -5,7 +5,13 @@ import Skeleton from "react-loading-skeleton";
 
 const User = ({ username, fullName }) => {
   return !username || !fullName ? (
-    <Skeleton count={1} height={61} />
+    <div className="flex">
+      <Skeleton count={1} circle={true} width={60} height={60} />
+      <div className="flex flex-col ml-2 justify-center">
+        <Skeleton width={80} height={24} />
+        <Skeleton width={100} height={18} />
+      </div>
+    </div>
   ) : (
     <Link to={`/p/${username}`}>
       <div className="grid grid-cols-4 gap-4 mb-6 items-center">
