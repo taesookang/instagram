@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import * as ROUTES from "./constants/Routes";
 import userContext from "./context/user";
 import useAuthListener from "./hooks/useAuthListener";
+import { ClipLoader } from "react-spinners";
 
 import ProtectedRoute from "./helpers/ProtectedRoute";
 import IsUserLoggedIn from "./helpers/IsUserLoggedIn";
@@ -18,7 +19,13 @@ function App() {
   return (
     <userContext.Provider value={{ user }}>
       <Router>
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense
+          fallback={
+            <div className="flex justify-center items-center h-screen">
+              <ClipLoader color={"#005c98"} loading={true} size={50} />
+            </div>
+          }
+        >
           <Switch>
             <IsUserLoggedIn
               user={user}
