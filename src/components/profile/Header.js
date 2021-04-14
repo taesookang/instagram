@@ -58,7 +58,7 @@ export default function Header({
     <div className="grid grid-cols-3 gap-4 justify-between mx-auto max-w-screen-lg">
       <div className="container flex justify-center">
         {profileUsername ? (
-          <div className={`${ isFollowingProfile && "p-1 bg-gradient-to-tr from-yellow to-red-primary rounded-full"}`}>
+          <div className={` min-w-max ${ isFollowingProfile && "p-1 bg-gradient-to-tr from-yellow to-red-primary rounded-full"}`}>
           <img
             src={`/images/avatars/${profileUsername}.jpg`}
             alt={`${profileUsername} profile`}

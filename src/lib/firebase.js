@@ -4,12 +4,12 @@ import 'firebase/auth';
 // import { seedDatabase } from '../seed';
 
 const config = {
-    apiKey: process.env.REACT_APP_API_KEY,
-    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-    projectId: process.env.REACT_APP_PROJECT_ID,
-    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-    appId: process.env.REACT_APP_APP_ID
+    apiKey: "AIzaSyDHr8wcZeKiNFhwDBoysl4tWJVgNAdkph4",
+    authDomain: "instagram-7d7f6.firebaseapp.com",
+    projectId: "instagram-7d7f6",
+    storageBucket: "instagram-7d7f6.appspot.com",
+    messagingSenderId: "226413461747",
+    appId: "1:226413461747:web:3bff68059f68b09245b786"
 };
 
 const firebase = Firebase.initializeApp(config);

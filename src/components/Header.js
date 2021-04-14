@@ -12,8 +12,8 @@ export default function Header() {
     <header className="bg-white h-16 border-b border-gray-primary mb-8">
       <div className="container mx-auto max-w-screen-lg h-full">
         <div className="flex justify-between h-full">
-          <div className="text-gray-700 text-center flex items-center cursor-pointer">
-            <h1 className="flex justify-center w-full">
+          <div className="flex items-center cursor-pointer">
+            <h1 className="flex justify-center w-full min-w-max">
               <Link to={ROUTES.DASHBOARD} aria-label="Instagram logo">
                 <img
                   src="/images/instagrid.png"
@@ -66,7 +66,7 @@ export default function Header() {
                     />
                   </svg>
                 </button>
-                <div className="flex items-center cursor-pointer">
+                <div className="flex items-center cursor-pointer min-w-max">
                   <Link to={`/p/${user.displayName}`}>
                     <img
                       className="rounded-full h-10 w-10 flex"
