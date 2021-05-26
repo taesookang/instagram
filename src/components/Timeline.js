@@ -13,7 +13,7 @@ export default function Timeline() {
   }
 
   return (
-    <div className="container col-span-2">
+    <div className="container col-span-3 sm:col-span-2">
       {!photos ? (
         loaders
       ) : photos?.length > 0 ? (

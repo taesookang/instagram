@@ -56,43 +56,50 @@ export default function Header({
 
   return (
     <div className="grid grid-cols-3 gap-4 justify-between mx-auto max-w-screen-lg">
-      <div className="container flex justify-center">
+      <div className="container flex justify-center ml-3">
         {profileUsername ? (
-          <div className={` min-w-max ${ isFollowingProfile && "p-1 bg-gradient-to-tr from-yellow to-red-primary rounded-full"}`}>
-          <img
-            src={`/images/avatars/${profileUsername}.jpg`}
-            alt={`${profileUsername} profile`}
-            className="rounded-full h-40 w-40 flex border-4 border-white"
-          />
+          <div
+            className={`flex w-28 h-28 sm:h-auto items-center justify-center sm:min-w-max ${
+              isFollowingProfile &&
+              "p-1 bg-gradient-to-tr from-yellow to-red-primary rounded-full"
+            }`}
+          >
+            <img
+              src={`/images/avatars/${profileUsername}.jpg`}
+              alt={`${profileUsername} profile`}
+              className="rounded-full w-7/8 h-7/8 sm:h-40 sm:w-40 flex border-4 sm:border-4 border-white"
+            />
           </div>
-        ):(
-          <Skeleton circle={true} width={150} height={150}/>
+        ) : (
+          <Skeleton circle={true} width={150} height={150} />
         )}
       </div>
-      <div className="flex items-center justify-center flex-col col-span-1">
+      <div className="flex items-center justify-center flex-col col-span-2 px-2">
         <div className="container flex items-center">
-          <div className="flex mr-4 items-center">
-            <p className="text-2xl mr-1">{profileUsername}</p>
-            {isFollowingProfile && (
-              <div className="w-5 h-5 text-blue-medium">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
-            )}
+          <div className="flex mr-4 items-center justify-between w-full sm:w-auto">
+            <div className="flex items-center">
+              <p className=" text-lg sm:text-2xl mr-1">{profileUsername}</p>
+              {isFollowingProfile && (
+                <div className="w-5 h-5 text-blue-medium">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+              )}
+            </div>
           </div>
 
           {isOwner ? null : !isFollowingProfile ? (
             <button
-              className="bg-blue-medium font-bold text-sm rounded text-white w-20 h-8"
+              className="bg-blue-medium font-bold text-sm rounded text-white w-32 h-8"
               type="button"
               onClick={handleToggleFollow}
             >
@@ -101,7 +108,7 @@ export default function Header({
           ) : (
             <>
               <button
-                className="border border-gray-primary font-bold text-sm rounded text-black-light w-20 h-8 flex justify-center items-center"
+                className="border border-gray-primary font-bold text-sm rounded text-black-light w-32 h-8 flex justify-center items-center"
                 type="button"
                 onClick={handleToggleFollow}
               >
@@ -122,15 +129,15 @@ export default function Header({
             <Skeleton count={1} width={320} height={48} />
           ) : (
             <>
-              <p className="mr-10">
+              <p className="mr-4 sm:mr-10">
                 <span className="font-bold">{photosCount}</span> photos
               </p>
-              <p className="mr-10">
+              <p className="mr-4 sm:mr-10">
                 <span className="font-bold">{followerCount}</span>
                 {` `}
                 {followerCount === 1 ? `follower` : `followers`}
               </p>
-              <p className="mr-10">
+              <p className="mr-4 sm:mr-10">
                 <span className="font-bold">{following?.length}</span> following
               </p>
             </>
@@ -138,7 +145,11 @@ export default function Header({
         </div>
         <div className="container mt-4">
           <p className="font-medium">
-            {!fullName ? <Skeleton count={1} width={100} height={24} /> : fullName}
+            {!fullName ? (
+              <Skeleton count={1} width={100} height={24} />
+            ) : (
+              fullName
+            )}
           </p>
         </div>
       </div>

@@ -7,7 +7,7 @@ export default function Sidebar() {
     const { user: { docId, fullName, username, userId, following } } = useUser()
 
     return (
-      <div className="p-4">
+      <div className="p-4 sm:flex sm:flex-col">
         <User username={username} fullName={fullName} />
         <Suggestions userId={userId} following={following} userDocId={docId} />
       </div>

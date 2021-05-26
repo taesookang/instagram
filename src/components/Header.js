@@ -9,11 +9,10 @@ export default function Header() {
   const { user } = useContext(userContext);
 
   return (
-    <header className="bg-white h-16 border-b border-gray-primary mb-8">
-      <div className="container mx-auto max-w-screen-lg h-full">
+    <header className="bg-white h-16 border-b border-gray-primary mb-2 sm:mb-8 w-full px-3">
+      <div className="container mx-auto h-full">
         <div className="flex justify-between h-full">
           <div className="flex items-center cursor-pointer">
-            <h1 className="flex justify-center w-full min-w-max">
               <Link to={ROUTES.DASHBOARD} aria-label="Instagram logo">
                 <img
                   src="/images/Instagrid.png"
@@ -21,7 +20,6 @@ export default function Header() {
                   className="mt-2 w-2/6"
                 />
               </Link>
-            </h1>
           </div>
           <div className="flex text-gray-700 text-center items-center">
             {user ? (
