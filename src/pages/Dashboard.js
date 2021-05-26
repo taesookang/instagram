@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from '../components/Header'
 import Timeline from '../components/Timeline'
 import Sidebar from '../components/sidebar'
 
 export default function Dashboard() {
+
+    useEffect(() => {
+        document.title = "Instagrid"
+    }, [])
 
     return (
         <div className="bg-gray-background">
