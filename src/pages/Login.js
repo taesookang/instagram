@@ -44,7 +44,7 @@ export default function Login() {
       <div className="w-4/5 flex flex-col sm:w-2/5">
         <div className="flex flex-col items-center bg-white mb-4 p-4 border border-gray-primary rounded ">
           <div className="flex justify-center w-full">
-            <img src="/images/instagrid.png" alt="" className="mt-2 mb-4 w-6/12" />
+            <img src="/images/Instagrid.png" alt="logo" className="mt-2 mb-4 w-6/12" />
           </div>
 
           {error && <p className="mb-4 text-xs text-red-primary">{error}</p>}
