@@ -12,6 +12,7 @@ export default function Login() {
 
   const [error, setError] = useState("");
   const isInvalid = password === "" || emailAddress === "";
+  const testButtonDisable = emailAddress === "test@test.com" && password === "akskdkfk1"
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -26,8 +27,13 @@ export default function Login() {
     }
   };
 
+  const useTestAccount = () => {
+    setEmailAddress("test@test.com");
+    setPassword("akskdkfk1");
+  }
+
   useEffect(() => {
-    document.title = "Login - instagram";
+    document.title = "Login - instagrid";
   }, []);
 
   return (
@@ -37,9 +43,9 @@ export default function Login() {
       </div>
       <div className="w-4/5 flex flex-col sm:w-2/5">
         <div className="flex flex-col items-center bg-white mb-4 p-4 border border-gray-primary rounded ">
-          <h1 className="flex justify-center w-full">
+          <div className="flex justify-center w-full">
             <img src="/images/instagrid.png" alt="" className="mt-2 mb-4 w-6/12" />
-          </h1>
+          </div>
 
           {error && <p className="mb-4 text-xs text-red-primary">{error}</p>}
 
@@ -79,6 +85,14 @@ export default function Login() {
             </Link>
           </p>
         </div>
+
+        <button 
+          className={`bg-blue-medium text-white w-full h-10 mt-4 rounded font-semibold ${
+            testButtonDisable && "opacity-50"
+          }`}
+          onClick={useTestAccount}
+          disabled={testButtonDisable}
+        >Try with testing account</button>
       </div>
     </div>
   );
